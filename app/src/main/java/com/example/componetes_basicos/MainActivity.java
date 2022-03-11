@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -16,8 +18,14 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText campoEmail;
     private TextView textResultado;
 
+    //CheckBox
+
     private CheckBox checkVermelho, checkVerde, checkBranco ;
 
+    //RadioButton
+
+    private RadioButton sexoMasculino, sexoFeminino;
+    private RadioGroup opcaosexo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +40,47 @@ public class MainActivity extends AppCompatActivity {
         checkVerde          = findViewById(R.id.checkVerde);
         checkBranco         = findViewById(R.id.checkBranco);
 
+        //RadioButton
+        sexoFeminino        = findViewById(R.id.radioButtonF);
+        sexoMasculino       = findViewById(R.id.radioButtonM);
+        opcaosexo           = findViewById(R.id.radioGroupSexo);
+
+        radiobutton();
     }
+    public void radiobutton(){
+
+        opcaosexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+
+                if (checkedId == R.id.radioButtonM) {
+                    textResultado.setText("Masculino");
+
+                } else if (checkedId == R.id.radioButtonF) {
+                    textResultado.setText("Feminino");
+                }
+
+            }});
+
+
+/*      String sexo = "";
+        if (sexoMasculino.isChecked()){
+            sexo = " Masculino ";
+
+        }
+        textResultado.setText(sexo);
+        if (sexoFeminino.isChecked()){
+            sexo = " Feminino ";
+
+        }
+        textResultado.setText(sexo); */
+
+
+
+
+
+    }
+
     public void checkbox(){
         String texto = "";
         if(checkVermelho.isChecked()) {
@@ -52,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void enviar(View view){
-
-        checkbox();
+        //radiobutton();
+        //checkbox();
         /*
         String nome         = campoNome.getText().toString();
         String email        = campoEmail.getText().toString();
